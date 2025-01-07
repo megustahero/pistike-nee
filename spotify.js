@@ -34,15 +34,23 @@ function addSong() {
 
 function displaySongs() {
     const songList = document.getElementById('songs');
-    songList.innerHTML = ''; // Clear previous list
+    const noSongsMessage = document.getElementById('noSongsMessage');
 
     const songs = JSON.parse(localStorage.getItem('songs')) || [];
 
-    songs.forEach(song => {
-        const songItem = document.createElement('li');
-        songItem.textContent = `Cím: ${song.title}, Előadó: ${song.band}, Műfaj: ${song.genre}`;
-        songList.appendChild(songItem);
-    });
+    songList.innerHTML = '';
+
+    if (songs.length === 0) {
+        noSongsMessage.style.display = 'block';
+    } else {
+        noSongsMessage.style.display = 'none';
+
+        songs.forEach((song, index) => {
+            const songItem = document.createElement('li');
+            songItem.textContent = `Cím: ${song.title}, Előadó: ${song.band}, Műfaj: ${song.genre}, Kiadás éve: ${song.date}`;
+            songList.appendChild(songItem);
+        });
+    }
 }
 
 // Load songs on page load
