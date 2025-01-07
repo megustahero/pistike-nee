@@ -26,9 +26,6 @@ function addSong() {
     songs.push(songData);
     localStorage.setItem('songs', JSON.stringify(songs));
 
-    //displaySongs();
-
-    //document.getElementById('songForm').reset();
     location.href = 'spotify.html';
 }
 
@@ -48,9 +45,38 @@ function displaySongs() {
         songs.forEach((song, index) => {
             const songItem = document.createElement('li');
             songItem.textContent = `Cím: ${song.title}, Előadó: ${song.band}, Műfaj: ${song.genre}, Kiadás éve: ${song.date}`;
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.style.marginLeft = '10px';
+            checkbox.onchange = () => {
+                if (checkbox.checked) {
+                    songItem.style.backgroundColor = 'lightgreen';
+                } else {
+                    songItem.style.backgroundColor = '';
+                }
+            };
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Törlés';
+            deleteButton.style.marginLeft = '10px';
+            deleteButton.onclick = () => {
+                deleteSong(index);
+            };
+
+            songItem.appendChild(checkbox);
+            songItem.appendChild(deleteButton);
+
             songList.appendChild(songItem);
         });
     }
+}
+
+function deleteSong(index) {
+    let songs = JSON.parse(localStorage.getItem('songs')) || [];
+    songs.splice(index, 1);
+    localStorage.setItem('songs', JSON.stringify(songs));
+    displaySongs();
 }
 
 // Load songs on page load
