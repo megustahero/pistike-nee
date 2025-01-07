@@ -19,21 +19,21 @@
             <label for="band">Előadó:</label><br>
             <input type="text" name="band" id="band" required><br>
             <label for="genre">Műfaj:</label><br>
-            <select required>
-                <option>pop</option>
-                <option>rock</option>
-                <option>hip-hop</option>
-                <option>country</option>
-                <option>electronic</option>
-                <option>jazz</option>
-                <option>blues</option>
-                <option>classical</option>
-                <option>rap</option>
-                <option>metal</option>
-                <option>lo-fi</option>
+            <select id="genre" name="genre" required>
+                <option value="pop">pop</option>
+                <option value="rock">rock</option>
+                <option value="hip-hop">hip-hop</option>
+                <option value="country">country</option>
+                <option value="electronic">electronic</option>
+                <option value="jazz">jazz</option>
+                <option value="blues">blues</option>
+                <option value="classical">classical</option>
+                <option value="rap">rap</option>
+                <option value="metal">metal</option>
+                <option value="lo-fi">lo-fi</option>
             </select><br>
-            <label for="date">Kiadás éve: </label>
-            <input type="text" id="date" readonly>
+            <label for="date">Kiadás éve:</label>
+            <input type="text" name="date" id="date" min="1900" max="" required>
             <br><br>
 
             <div style="display: flex; justify-content: space-between; gap: 10px;">
